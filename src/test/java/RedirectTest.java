@@ -29,4 +29,28 @@ public class RedirectTest {
         String secondLocationHeaders = secondResponse.getHeader("location");
         System.out.println(secondLocationHeaders);
     }
+
+    @Test
+    public void TestLongRedirectEx7() {
+
+        String location = "https://playground.learnqa.ru/api/long_redirect";
+        int responseCode = 301;
+        int countRedirect = 0;
+
+        while (responseCode != 200) {
+            System.out.println(location);
+            Response response = RestAssured
+                    .given()
+                    .redirects()
+                    .follow(false)
+                    .when()
+                    .get(location)
+                    .andReturn();
+            responseCode = response.statusCode();
+            location = response.getHeader("location");
+            countRedirect++;
+        }
+
+        System.out.println(countRedirect);
+    }
 }
