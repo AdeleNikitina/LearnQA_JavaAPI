@@ -18,7 +18,7 @@ public class HelloWorldTest {
     }
 
     @Test
-    public void TestGetText(){
+    public void TestGetTextEx4(){
         Response response = RestAssured
                 .get("https://playground.learnqa.ru/api/get_text")
                 .andReturn();
