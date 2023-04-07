@@ -12,7 +12,9 @@ public class TokenTest {
         JsonPath createResponse = RestAssured
                 .get("https://playground.learnqa.ru/ajax/api/longtime_job")
                 .jsonPath();
+        createResponse.prettyPrint();
         String token = createResponse.get("token");
+        int time = createResponse.get("seconds");
 
         JsonPath responseNotReady = RestAssured
                 .given()
@@ -22,7 +24,7 @@ public class TokenTest {
         String responseNotReadyMessage = responseNotReady.get("status");
         assertEquals(responseNotReadyMessage, "Job is NOT ready");
 
-        Thread.sleep(18000);
+        Thread.sleep(time * 1000L);
 
         JsonPath responseReady = RestAssured
                 .given()
