@@ -20,12 +20,15 @@ public class Assertions {
                 "Response text is not as expected"
         );
     }
-
     public static void assertResponseCodeEquals(Response Response, int expectedStatusCode){
         assertEquals(
                 expectedStatusCode,
                 Response.statusCode(),
                 "Response status code is not as expected"
         );
+    }
+
+    public static void assertJsonHasKey(Response Response, String expectedFieldName) {
+        Response.then().assertThat().body("$", hasKey(expectedFieldName));
     }
 }
