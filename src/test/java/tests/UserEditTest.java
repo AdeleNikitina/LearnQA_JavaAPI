@@ -1,8 +1,6 @@
 package tests;
 
-import io.qameta.allure.Description;
-import io.qameta.allure.Epic;
-import io.qameta.allure.Feature;
+import io.qameta.allure.*;
 import io.restassured.response.Response;
 import lib.ApiCoreRequests;
 import lib.Assertions;
@@ -24,6 +22,9 @@ public class UserEditTest extends BaseTestCase {
     @Test
     @Description("This test successfully edit user")
     @DisplayName("Test positive edit user")
+    @TmsLinks({@TmsLink(value = "CCRC-001"), @TmsLink(value = "CCRC-002")})
+    @Severity(value = SeverityLevel.CRITICAL)
+    @Owner("Никитина Аделия")
     public void testEditJustCreatedUser() {
         //GENERATE USER
         Map<String, String> userData = DataGenerator.getRegistrationData();
@@ -70,6 +71,9 @@ public class UserEditTest extends BaseTestCase {
     @Test
     @Description("This test edit user w/o login")
     @DisplayName("Negative test - edit user w/o login")
+    @TmsLinks({@TmsLink(value = "CCRC-001"), @TmsLink(value = "CCRC-002")})
+    @Severity(value = SeverityLevel.NORMAL)
+    @Owner("Никитина Аделия")
     public void testEditUserWithoutLogin() {
         //GENERATE USER
         Map<String, String> userData = DataGenerator.getRegistrationData();
@@ -97,6 +101,9 @@ public class UserEditTest extends BaseTestCase {
     @Test
     @Description("This test try edit user by other user")
     @DisplayName("Negative test - edit user by other user")
+    @TmsLinks({@TmsLink(value = "CCRC-001"), @TmsLink(value = "CCRC-002")})
+    @Severity(value = SeverityLevel.NORMAL)
+    @Owner("Никитина Аделия")
     public void testEditUserOtherUser() {
         //GENERATE USER
         Map<String, String> userData = DataGenerator.getRegistrationData();
@@ -135,6 +142,9 @@ public class UserEditTest extends BaseTestCase {
     @Test
     @Description("This test try edit user with invalid email")
     @DisplayName("Negative test - edit user with invalid email")
+    @TmsLinks({@TmsLink(value = "CCRC-001"), @TmsLink(value = "CCRC-002")})
+    @Severity(value = SeverityLevel.NORMAL)
+    @Owner("Никитина Аделия")
     public void testEditUserWithInvalidEmail() {
         //GENERATE USER
         Map<String, String> userData = DataGenerator.getRegistrationData();
@@ -174,6 +184,9 @@ public class UserEditTest extends BaseTestCase {
     @Test
     @Description("This test try edit user with invalid firstName")
     @DisplayName("Negative test - edit user with invalid firstName ")
+    @TmsLinks({@TmsLink(value = "CCRC-001"), @TmsLink(value = "CCRC-002")})
+    @Severity(value = SeverityLevel.NORMAL)
+    @Owner("Никитина Аделия")
     public void testEditUserWithInvalidFirstName () {
         //GENERATE USER
         Map<String, String> userData = DataGenerator.getRegistrationData();

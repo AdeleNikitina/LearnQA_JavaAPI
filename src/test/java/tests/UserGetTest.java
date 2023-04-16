@@ -1,10 +1,8 @@
 package tests;
 
-import io.qameta.allure.Epic;
-import io.qameta.allure.Feature;
+import io.qameta.allure.*;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
-import io.qameta.allure.Description;
 import lib.Assertions;
 import lib.BaseTestCase;
 import lib.ApiCoreRequests;
@@ -14,14 +12,17 @@ import org.junit.jupiter.api.Test;
 import java.util.HashMap;
 import java.util.Map;
 
-@DisplayName("Get User Data Tests")
+@Epic("Get user data cases")
+@Feature("User data")
 public class UserGetTest extends BaseTestCase {
 
     private final ApiCoreRequests apiCoreRequests = new ApiCoreRequests();
 
-    @Epic("Get user data cases")
-    @Feature("User data")
     @Description("Get user data w/o login")
+    @DisplayName("Try get user data w/o login")
+    @TmsLinks({@TmsLink(value = "CCRC-004"), @TmsLink(value = "CCRC-005")})
+    @Severity(value = SeverityLevel.NORMAL)
+    @Owner("Никитина Аделия")
     @Test
     public void testGetUserDataNotAuth() {
         Response responseUserData = RestAssured
@@ -33,9 +34,12 @@ public class UserGetTest extends BaseTestCase {
         Assertions.assertJsonHasNotFields(responseUserData, unexpectedFieldNames);
     }
 
-    @Epic("Get user data cases")
-    @Feature("User data")
-    @Description("Get own user data")
+
+    @DisplayName("Get own user data w/o login")
+    @Description("Positive Test - Get own user data")
+    @TmsLinks({@TmsLink(value = "CCRC-004"), @TmsLink(value = "CCRC-005")})
+    @Severity(value = SeverityLevel.CRITICAL)
+    @Owner("Никитина Аделия")
     @Test
     public void testGetUserDataDetailsAuthAsSomeUser() {
         Map<String, String> authData = new HashMap<>();
@@ -55,9 +59,11 @@ public class UserGetTest extends BaseTestCase {
         Assertions.assertJsonHasFields(responseUserData, expectedFieldNames);
     }
 
-    @Epic("Get user data cases")
-    @Feature("User data")
+    @DisplayName("Get  user data by other user")
     @Description("Get other user data")
+    @TmsLinks({@TmsLink(value = "CCRC-004"), @TmsLink(value = "CCRC-005")})
+    @Severity(value = SeverityLevel.CRITICAL)
+    @Owner("Никитина Аделия")
     @Test
     public void testGetUserDataDetailsAuthAsOtherUser() {
         Map<String, String> authData = new HashMap<>();

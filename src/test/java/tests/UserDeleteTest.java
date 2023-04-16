@@ -1,6 +1,6 @@
 package tests;
 
-import io.qameta.allure.Epic;
+import io.qameta.allure.*;
 import io.restassured.response.Response;
 import lib.BaseTestCase;
 import lib.DataGenerator;
@@ -13,14 +13,19 @@ import lib.Assertions;
 import java.util.HashMap;
 import java.util.Map;
 
+@Epic("Deleting user")
+@DisplayName("Success delete user")
 public class UserDeleteTest extends BaseTestCase {
 
     int userId;
     final static ApiCoreRequests apiCoreRequests = new ApiCoreRequests();
 
     @Test
-    @Epic("Deleting user")
+    @Description("Deleting user with id 2")
     @DisplayName("Delete user with id 2")
+    @TmsLinks({@TmsLink(value = "CCRC-001"), @TmsLink(value = "CCRC-002")})
+    @Severity(value = SeverityLevel.NORMAL)
+    @Owner("Никитина Аделия")
     void testDeleteUserWithId2() {
         Map<String, String> authData = new HashMap<>();
         authData.put("email", "vinkotov@example.com");
@@ -42,8 +47,11 @@ public class UserDeleteTest extends BaseTestCase {
     }
 
     @Test
-    @Epic("Deleting user")
+    @Description("Positive Test - Success delete user")
     @DisplayName("Success delete user")
+    @TmsLinks({@TmsLink(value = "CCRC-001"), @TmsLink(value = "CCRC-002")})
+    @Severity(value = SeverityLevel.CRITICAL)
+    @Owner("Никитина Аделия")
     void testSuccessDeleteUser() {
         //GENERATE USER
         Map<String, String> userData = DataGenerator.getRegistrationData();
@@ -84,7 +92,10 @@ public class UserDeleteTest extends BaseTestCase {
     }
 
     @Test
-    @Epic("Deleting user")
+    @Description("Negative Test - Delete user by other user")
+    @TmsLinks({@TmsLink(value = "CCRC-001"), @TmsLink(value = "CCRC-002")})
+    @Severity(value = SeverityLevel.CRITICAL)
+    @Owner("Никитина Аделия")
     @DisplayName("Delete user by other user")
     void testDeleteUserByOtherUser() {
         //GENERATE USER
