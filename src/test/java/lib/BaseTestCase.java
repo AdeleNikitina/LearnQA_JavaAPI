@@ -26,5 +26,4 @@ public class BaseTestCase {
         return Response.jsonPath().getInt(name);
     }
 
-
 }
