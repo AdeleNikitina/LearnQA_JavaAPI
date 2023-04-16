@@ -120,7 +120,5 @@
                 </plugin>
             </plugins>
         </pluginManagement>
-        <plugins>
-        </plugins>
     </build>
 </project>

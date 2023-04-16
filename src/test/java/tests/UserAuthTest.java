@@ -42,8 +42,6 @@ public class UserAuthTest extends BaseTestCase {
         this.userIdOnAuth = this.getIntFromJson(responseGetAuth, "user_id");
 
     }
-
-
     @Test
     @Description("This test successfully authorize user by email and password")
     @DisplayName("Test positive auth user")
