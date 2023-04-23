@@ -125,6 +125,30 @@ public class UserDeleteTest extends BaseTestCase {
         );
 
         Assertions.assertResponseCodeEquals(responseDeleteUser, 400);
+
+        //LOGIN
+        Map<String, String> authData2 = new HashMap<>();
+        authData2.put("email", userData.get("email"));
+        authData2.put("password", userData.get("password"));
+
+        Response response2GetAuth = apiCoreRequests.makePostRequest(
+                "https://playground.learnqa.ru/api/user/login",
+                authData2);
+
+        //GET
+        Response responseUserData = apiCoreRequests.makeGetRequest(
+                "https://playground.learnqa.ru/api/user/" + userId,
+                this.getHeader(response2GetAuth, "x-csrf-token"),
+                this.getCookie(response2GetAuth, "auth_sid")
+        );
+
+        responseUserData.prettyPrint();
+
+        Assertions.asserJsonByName(responseUserData, "id", userId);
+        Assertions.asserJsonByName(responseUserData, "username", userData.get("username"));
+        Assertions.asserJsonByName(responseUserData, "email", userData.get("email"));
+        Assertions.asserJsonByName(responseUserData, "firstName", userData.get("firstName"));
+        Assertions.asserJsonByName(responseUserData, "lastName", userData.get("lastName"));
     }
 
 }
